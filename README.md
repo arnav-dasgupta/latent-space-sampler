@@ -2,6 +2,7 @@
 
 This project maps the high-dimensional geometry of how LLMs actually "see" text, into a 3D space to visualize the relationship between 2 sample sentences.
 
+Link : [`latent-space-sampler`](https://latent-space-sampler.streamlit.app/)
 
 the app converts the input sentences into a 768-dimension vectors using the [all-mpnet-base-v2](https://huggingface.co/sentence-transformers/all-mpnet-base-v2) model. 
 

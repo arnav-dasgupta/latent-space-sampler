@@ -6,6 +6,8 @@ import numpy as np
 
 TRANSPARENT_BG = 'rgba(0,0,0,0)'
 
+# Safety Configuration
+MAX_CHARS = 1000
 
 st.set_page_config(page_title="Latent Space Sampler", layout="wide", initial_sidebar_state="collapsed")
 
@@ -47,8 +49,14 @@ with left_col:
         </div>
     """, unsafe_allow_html=True)
     
-    text_a = st.text_area("SAMPLE_ALPHA", "Batman is Bruce Wayne", height=90)
-    text_b = st.text_area("SAMPLE_BETA", "Superman is Clarke Kent", height=90)
+    text_a = st.text_area("SAMPLE_ALPHA", "Batman is Bruce Wayne", height=90, max_chars=MAX_CHARS)
+    text_b = st.text_area("SAMPLE_BETA", "Superman is Clarke Kent", height=90, max_chars=MAX_CHARS)
+    
+    # Validation logic
+    over_limit = len(text_a) >= MAX_CHARS or len(text_b) >= MAX_CHARS
+    if over_limit:
+        st.error(f"⚠️ Limit: {MAX_CHARS} characters per sample to prevent memory overflow.")
+    
     analyze = st.button("RUN VECTOR ANALYSIS")
     
     metric_placeholder = st.empty()
